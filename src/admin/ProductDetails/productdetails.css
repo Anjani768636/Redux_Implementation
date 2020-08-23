@@ -1,0 +1,123 @@
+.containerpd {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+   
+  /* Left */
+.left-columnpd {
+  width: 50%;
+  position: relative;
+}
+  
+.left-columnpd img {
+  width: 100%;
+}
+  
+  /* Right */
+.right-columnpd {
+  width: 50%;
+  position: relative;
+}
+
+.product-descriptionpd {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 10px;
+}
+
+.product-descriptionpd span {
+  font-size: 12px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.product-descriptionpd h1 {
+  margin: 0px;
+  font-weight: 300;
+  font-size: 52px;
+  color: #43484D;
+  letter-spacing: -2px;
+}
+
+.product-descriptionpd p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #86939E;
+  line-height: 24px;
+}
+
+.product-pricepd {
+  display: flex;
+  align-items: center;
+}
+   
+.product-pricepd span {
+  font-size: 26px;
+  font-weight: 300;
+  color: #43474D;
+  margin-right: 20px;
+}
+  
+  /* columns */
+* {
+    box-sizing: border-box;
+    padding: 2px;
+  }
+    
+    /* Create two equal columns that floats next to each other */
+.columnpd {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.buttonpd {
+  background-color:black;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer; 
+}
+    
+@media (max-width: 940px) {
+  .containerpd {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+   
+  .left-columnpd,
+  .right-columnpd {
+    width: 100%;
+  }
+   
+  .left-columnpd img {
+    width: 300px;
+    right: 0;
+    top: -65px;
+    left: initial;
+  }
+}
+   
+@media (max-width: 535px) {
+  .left-columnpd img {
+    width: 220px;
+    top: -85px;
+  }
+}
+  
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .columnpd {
+    width: 100%;
+  }
+}
+  
+  

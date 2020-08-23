@@ -1,0 +1,70 @@
+{
+  "allProducts": [
+    {
+      "name": "CATE RIGID BAG",
+      "price": "600",
+      "image": "https://guesseu.scene7.com/is/image/GuessEU/HWVG6216060-TAN?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+      "category": "Baggage",
+      "quantity": "9",
+      "id": 1
+    },
+    {
+      "name": "GLORIA HIGH-LOGO SNEAKER",
+      "price": "400",
+      "image": "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+      "category": "Fashion",
+      "quantity": "9",
+      "id": 2
+    },
+    {
+      "name": "Nokia 8 Sirocco",
+      "price": "36999",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "category": "Electronics",
+      "quantity": "5",
+      "id": 5
+    },
+    {
+      "name": "Bag",
+      "price": "12345",
+      "image": "http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
+      "category": "Electronics",
+      "quantity": "5",
+      "id": 6
+    },
+    {
+      "name": "Nokia",
+      "price": "56789",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "category": "Electronics",
+      "quantity": "5",
+      "id": 7
+    },
+    {
+      "name": "Nokia",
+      "price": "7890",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "category": "Electronics",
+      "quantity": "5",
+      "id": 8
+    }
+  ],
+  "login": [
+    {
+      "user": "admin@gmail.com",
+      "password": "12345Ab!"
+    },
+    {
+      "id": "anjani@gmail.com",
+      "password": "12345Ab!"
+    },
+    {
+      "id": "anjani9876@gmail.com",
+      "password": "12345Ab!"
+    },
+    {
+      "id": "testingr@gmail.com",
+      "password": "12345Ab!"
+    }
+  ]
+}
