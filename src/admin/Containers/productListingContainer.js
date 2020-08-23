@@ -74,7 +74,7 @@ class ProductList extends React.Component {
                     <img src={product.image} alt={product.name}style={{height:"200px",width:"200px"}}/> 
                     <p>{product.name} Rs: {product.price}</p>
                     <p>Qty: {this.props.quantity}</p>
-                    <button className="buttonpl" onClick={this.editProductById.bind(this)} >Update</button>
+                    <button className="buttonpl" onClick={this.editProductById.bind(this,product.id)} >Update</button>
                     <button className="buttonpl" onClick={()=>this.deleteProductById(product.id)}>Delete</button>
                     <button className="buttonpl" onClick={()=>this.viewProductById(product.id)}>View Product</button> 
                 </div> 
@@ -181,6 +181,7 @@ class ProductList extends React.Component {
 
 function convertStoreToProps(store){
     console.log("store created")
+    console.log(store.allProducts)
     return{
         allProducts:store.allProducts
     }

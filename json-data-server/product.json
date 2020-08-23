@@ -2,7 +2,7 @@
   "allProducts": [
     {
       "name": "CATE RIGID BAG",
-      "price": "600",
+      "price": "607",
       "image": "https://guesseu.scene7.com/is/image/GuessEU/HWVG6216060-TAN?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
       "category": "Baggage",
       "quantity": "9",
@@ -42,11 +42,27 @@
     },
     {
       "name": "Nokia",
-      "price": "7890",
+      "price": "12345",
       "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
       "category": "Electronics",
       "quantity": "5",
       "id": 8
+    },
+    {
+      "name": "Test",
+      "price": "1234",
+      "image": "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+      "category": "Electronics",
+      "quantity": "2",
+      "id": 9
+    },
+    {
+      "name": "Nokia 11",
+      "price": "1234",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "category": "Electronics",
+      "quantity": "5",
+      "id": 10
     }
   ],
   "login": [

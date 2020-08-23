@@ -5,9 +5,11 @@ const listProductReducer =function listreducer(state = null, action){
             
             return action.payload
 
-            // case "NEW_PRODUCT":
-            
-            //     return action.payload
+             case "NEW_PRODUCT":
+                let newProduct=[
+                 action.payload,...state
+                ]
+                return newProduct
     
         default:
             break;

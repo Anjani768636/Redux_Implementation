@@ -13,7 +13,6 @@ class AddProduct extends React.Component {
     constructor(props){
         super(props)
         this.state ={
-            //id:0,
             name:'',
             price:0.0,
             image:'',
@@ -50,7 +49,7 @@ class AddProduct extends React.Component {
     // }
 
     addProduct(e){
-     // e.preventDefault();
+      e.preventDefault();
         let productRequestBody = {
             //"id":this.state.id,
             "name": this.state.name,
@@ -64,7 +63,7 @@ class AddProduct extends React.Component {
         .then(response=>{
         console.log(response);
        this.setState({success:true})
-        //this.props.addProduct(productRequestBody)
+       this.props.addProduct(productRequestBody)
         }, error=>{
              console.error(error);
         })
@@ -161,26 +160,25 @@ class AddProduct extends React.Component {
 
 }
 
-// function convertFunctionToPropsToBroadcast(dispatch){
-//     return bindActionCreators({
-//         addProduct: addProductBroadcast
+function convertFunctionToPropsToBroadcast(dispatch){
+   
+    return bindActionCreators({
+        addProduct: addProductBroadcast
 
-//     }, dispatch)
-// }
+    }, dispatch)
+}
 
 
 
 //   function convertStoreToProps(store){
-//     if(store.allproducts!==null){
+//    console.log(store.allproducts)
 //         return { allproducts: store.allproducts}
-    
-     
-    
-//       }
+
+      
 // }
 
-//export default withRouter (connect(convertStoreToProps,convertFunctionToPropsToBroadcast) (AddProduct));
-export default withRouter (AddProduct);
+export default withRouter (connect(null,convertFunctionToPropsToBroadcast) (AddProduct));
+//export default withRouter (AddProduct);
 
 
 

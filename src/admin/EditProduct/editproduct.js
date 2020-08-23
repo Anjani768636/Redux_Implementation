@@ -9,7 +9,7 @@ class EditProduct extends React.Component {
     constructor(props){
         super(props)
         this.state ={
-            id:0,
+            //id:0,
             name:'',
             price:0.0,
             imgUrl:'',
@@ -23,7 +23,9 @@ class EditProduct extends React.Component {
 
 
     componentWillMount() {
+        console.log(this.props)
         if (this.props.location.state !== undefined) {
+            
             Axios.get("http://localhost:3000/allProducts/" + this.props.location.state.myid).then(response => {
                 console.log(response)
                 this.setState({
