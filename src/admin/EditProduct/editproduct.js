@@ -4,12 +4,15 @@ import './editproduct.css';
 import Header from '../Header/header'
 import { withRouter } from 'react-router-dom';
 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import editProductBroadcast from '../Actions/editProductBroadcast'
+
 class EditProduct extends React.Component {
 
     constructor(props){
         super(props)
         this.state ={
-            //id:0,
             name:'',
             price:0.0,
             imgUrl:'',
@@ -23,24 +26,39 @@ class EditProduct extends React.Component {
 
 
     componentWillMount() {
-        console.log(this.props)
-        if (this.props.location.state !== undefined) {
+        // console.log(this.props)
+        // if (this.props.location.state !== undefined) {
             
-            Axios.get("http://localhost:3000/allProducts/" + this.props.location.state.myid).then(response => {
-                console.log(response)
-                this.setState({
-                    id: response.data.id,
-                    image: response.data.image,
-                    name: response.data.name,
-                    price: response.data.price,
-                    quantity: response.data.quantity,
-                    category: response.data.category,
+        //     Axios.get("http://localhost:3000/allProducts/" + this.props.location.state.myid).then(response => {
+        //         console.log(response)
+        //         this.setState({
+        //             id: response.data.id,
+        //             image: response.data.image,
+        //             name: response.data.name,
+        //             price: response.data.price,
+        //             quantity: response.data.quantity,
+        //             category: response.data.category,
 
-                })
-            }, error => {
-                console.log(error)
-            })
-        }
+        //         })
+        //     }, error => {
+        //         console.log(error)
+        //     })
+        // }
+
+        let editProduct=this.props.products.find((p)=>{
+        return p.id == this.props.location.state});
+        console.log(this.props.location.state)
+                 this.setState({
+                    id: editProduct.id,
+                    image: editProduct.image,
+                    name: editProduct.name,
+                    price: editProduct.price,
+                    quantity: editProduct.quantity,
+                    category: editProduct.category,
+
+                });
+        
+        
     }
 
     getName=(event)=>{
@@ -82,7 +100,9 @@ class EditProduct extends React.Component {
         Axios.put("http://localhost:3000/allProducts/" + this.state.id, productRequestBody)
             .then(response => {
                 console.log(response)
+                
                 this.setState({success:true})
+                this.props.editProductB(response.data)
                 //this.props.history.push('/products')
             }, error => {
                 console.log(error)
@@ -171,6 +191,18 @@ class EditProduct extends React.Component {
 
 }
 
- 
+ function matchDispatchToProps(dispatch){
+     return bindActionCreators({
+        editProductB: editProductBroadcast
+     },dispatch);
+     
+ }
 
-export default withRouter (EditProduct);
+ function mapStatesToProps(store) {
+    console.log(store.allProducts);
+    return {
+      products: store.allProducts
+    };
+  }
+  export default withRouter (connect(mapStatesToProps, matchDispatchToProps)(EditProduct));
+//export default withRouter (EditProduct);

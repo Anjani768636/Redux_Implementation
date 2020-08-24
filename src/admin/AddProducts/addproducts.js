@@ -44,14 +44,11 @@ class AddProduct extends React.Component {
         this.setState({quantity: event.target.value})
     }
 
-    // getID=(event)=>{
-    //     this.setState({id: event.target.value})
-    // }
+
 
     addProduct(e){
       e.preventDefault();
         let productRequestBody = {
-            //"id":this.state.id,
             "name": this.state.name,
             "price": this.state.price,
             "image":this.state.image,
@@ -63,7 +60,8 @@ class AddProduct extends React.Component {
         .then(response=>{
         console.log(response);
        this.setState({success:true})
-       this.props.addProduct(productRequestBody)
+       //this.props.addProducts(productRequestBody)
+       this.props.addProducts(response.data)
         }, error=>{
              console.error(error);
         })
@@ -161,20 +159,19 @@ class AddProduct extends React.Component {
 }
 
 function convertFunctionToPropsToBroadcast(dispatch){
-   
     return bindActionCreators({
-        addProduct: addProductBroadcast
+        addProducts: addProductBroadcast
 
     }, dispatch)
 }
 
 
 
-//   function convertStoreToProps(store){
+//   function mapStateToProps(store){
 //    console.log(store.allproducts)
-//         return { allproducts: store.allproducts}
-
-      
+//         return { 
+//             : store.allproducts.length,
+//         }     
 // }
 
 export default withRouter (connect(null,convertFunctionToPropsToBroadcast) (AddProduct));

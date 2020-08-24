@@ -5,7 +5,7 @@
       "price": "607",
       "image": "https://guesseu.scene7.com/is/image/GuessEU/HWVG6216060-TAN?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
       "category": "Baggage",
-      "quantity": "9",
+      "quantity": "11",
       "id": 1
     },
     {
@@ -53,12 +53,12 @@
       "price": "1234",
       "image": "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
       "category": "Electronics",
-      "quantity": "2",
+      "quantity": "4",
       "id": 9
     },
     {
-      "name": "Nokia 11",
-      "price": "1234",
+      "name": "iPhone 11",
+      "price": "10000",
       "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
       "category": "Electronics",
       "quantity": "5",

@@ -103,23 +103,23 @@ class Dashboard extends React.Component {
 })
 
 }
-    // onChangeHandler(event){ 
-    //     event.preventDefault()
-    //     var value=event.target.value
-    //     if(value==="All"){
-    //         this.setState({chart1:this.state.copy})
-    //     }
-    //     else{
-    //         console.log(event.target.value)
-    //         var result=this.state.copy.filter(p=>p[0]===value)
-    //         console.log(result)
-    //         var final=[["category","quantity"]]
-    //         final.push(result[0])
-    //         console.log(final)
-    //         this.setState({chart1:final})
-    //     }
+    onChangeHandler(event){ 
+        event.preventDefault()
+        var value=event.target.value
+        if(value==="All"){
+            this.setState({chart1:this.state.copy})
+        }
+        else{
+            console.log(event.target.value)
+            var result=this.state.copy.filter(p=>p[0]===value)
+            console.log(result)
+            var final=[["category","quantity"]]
+            final.push(result[0])
+            console.log(final)
+            this.setState({chart1:final})
+        }
 
-    // }
+    }
 
     render() {
         return (
@@ -127,14 +127,14 @@ class Dashboard extends React.Component {
                 <Header></Header>
                 <center>
                 <div>
-                    {/* <label>Select Category:</label>
+                    <label>Select Category:</label>
                         <select name="category" style={{width:"200px"}} onChange={this.onChangeHandler.bind(this)}>
                             <option value="All">All</option> 
                             {this.state.unique.map(o=>(
                             <option value={o}>{o}</option>
                             ) )}
                         </select>
-                        <br/><br/> */}
+                        <br/><br/>
                         <div> 
                                 
                                 <Chart 
