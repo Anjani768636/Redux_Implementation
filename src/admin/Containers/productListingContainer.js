@@ -14,6 +14,12 @@ class ProductList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            products: [],
+      category: "",
+      renderthis: false,
+      searchValue: "",
+      searchproducts: [],
+      show: false,
    
             noData:false,
             sortvalue:false
@@ -32,7 +38,7 @@ class ProductList extends React.Component {
         axios.get("http://localhost:3000/allProducts").then(response => {
         console.log(response.data)
         this.props.sendAllProducts(response.data)
-        //this.setState({products:this.props.allProducts})
+        this.setState({products:this.props.allProducts})
         }, error => {
             console.log(error)
         })
@@ -66,8 +72,12 @@ class ProductList extends React.Component {
     }
 
     renderAllProducts = () => {
-       return this.props.allProducts.map(product => {
+        if(this.state.renderthis){
+            //this.setState({renderthis:true})
+      return this.state.products.map(product => {
+        console.log("rendering")
            console.log(product)
+           console.log(this.props.allProducts)
            console.log(product.name);
             return (
                 <div className="columnpl" style={{display:"inline"}} >
@@ -83,25 +93,87 @@ class ProductList extends React.Component {
             )
         })
     }
+    if(!this.state.renderthis){
+        
+        return this.props.allProducts.map(product => {
+            console.log("rendering")
+               console.log(product)
+               console.log(this.props.allProducts)
+               console.log(product.name);
+                return (
+                    <div className="columnpl" style={{display:"inline"}} >
+                    <div className="cardpl" >  
+                        <img src={product.image} alt={product.name}style={{height:"200px",width:"200px"}}/> 
+                        <p>{product.name} Rs: {product.price}</p>
+                        <p>Qty: {product.quantity}</p>
+                        <button className="buttonpl" onClick={this.editProductById.bind(this,product.id)} >Update</button>
+                        <button className="buttonpl" onClick={()=>this.deleteProductById(product.id)}>Delete</button>
+                        <button className="buttonpl" onClick={()=>this.viewProductById(product.id)}>View Product</button> 
+                    </div> 
+                  </div>
+                )
+            })
+
+    } 
+    }
+    
 
     addProduct() {
         this.props.history.push('/addproducts')
     }
 
-    searchHandle(event){
-        this.setState({searchtext:event.target.value},()=>{
-        console.log(this.state.searchtext)
-        const prod=this.state.productsList.filter(p=>{
-        return( p.name.toLowerCase().includes(this.state.searchtext.toLowerCase()) ||
-        p.category.toLowerCase().includes(this.state.searchtext.toLowerCase()) ||
-        p.quantity.toLowerCase().includes(this.state.searchtext.toLowerCase())
-        )})
-        if(!prod.length){
-        this.setState({noData:true})   
+    // searchHandle(event){
+    //     this.setState({searchtext:event.target.value},()=>{
+    //     console.log(this.state.searchtext)
+    //     const prod=this.state.productsList.filter(p=>{
+    //     return( p.name.toLowerCase().includes(this.state.searchtext.toLowerCase()) ||
+    //     p.category.toLowerCase().includes(this.state.searchtext.toLowerCase()) ||
+    //     p.quantity.toLowerCase().includes(this.state.searchtext.toLowerCase())
+    //     )})
+    //     if(!prod.length){
+    //     this.setState({noData:true})   
+    //     }
+    //     this.setState({products:prod})
+    //     })
+    // }
+    searchHandle = (event) => {
+        let searchV = event.target.value;
+        this.setState({
+          searchproducts: this.props.allProducts,
+        });
+        console.log(this.state.allProducts)
+        console.log(searchV);
+        console.log(this.props.allProducts)
+        if (searchV === "") {
+          this.setState({
+            searchproducts: this.props.allProducts,
+          });
+          
         }
-        this.setState({products:prod})
-        })
-    }
+        this.setState({ searchValue: searchV });
+        console.log(searchV);
+    
+        let searchF = this.state.searchproducts.filter((p) => {
+          return (
+            p.name.toLowerCase().match(searchV.toLowerCase()) ||
+            p.category.toLowerCase().match(searchV.toLowerCase()) ||
+            p.price === parseInt(searchV) ||
+            p.quantity === parseInt(searchV)
+          );
+        });
+        console.log(searchF);
+    
+        if (searchF) {
+          console.log("search");
+          this.setState({ products: searchF, renderthis:true });
+          console.log(this.state.products);
+        //   if(this.state.products.length==0){
+        //       this.setState({noData:true})
+        //       console.log("zero");
+        //   }
+        }
+      };
+    
 
     myFunction() {
         var x = document.getElementById("snackbar");
@@ -182,7 +254,7 @@ class ProductList extends React.Component {
 
 function convertStoreToProps(store){
     console.log("store created")
-    //console.log(store.allProducts)
+    console.log(store.allProducts)
     return{
         allProducts:store.allProducts
     }
