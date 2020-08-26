@@ -1,7 +1,7 @@
 const addProductBroadcast = function(products){
     console.log(products)
     return ({
-        type:'ALL_PRODUCTS',
+        type:'ADD_PRODUCTS',
         payload:products
     })
 }

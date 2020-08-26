@@ -1,12 +1,17 @@
 import React from 'react';
-import addProductBroadcast from '../Actions/addProductBroadcast';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux'
+import Axios from 'axios';
+import './addproducts.css';
+import Header from '../../Header/header'
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import addProductBroadcast from '../../Actions/addProductBroadcast';
 
 class AddProduct extends React.Component {
+
     constructor(props){
         super(props)
-        this.state={
+        this.state ={
             name:'',
             price:0.0,
             image:'',
@@ -15,6 +20,9 @@ class AddProduct extends React.Component {
             success:false  
         }
     }
+
+
+
     getName=(event)=>{
         this.setState({name: event.target.value})
     }
@@ -36,19 +44,33 @@ class AddProduct extends React.Component {
     }
 
 
-    addProduct(){
-      
+
+    addProduct(e){
+      e.preventDefault();
         let productRequestBody = {
-            //"id":this.state.id,
             "name": this.state.name,
             "price": this.state.price,
             "image":this.state.image,
             "category":this.state.category,
             "quantity":this.state.quantity
         }
+
+    Axios.post('http://localhost:3000/allProducts', productRequestBody)
+        .then(response=>{
+            console.log(response);
+            this.setState({success:true})
+            this.props.addProducts(response.data)
+        }, error=>{
+             console.error(error);
+        })
     }
-  
+
+    mainpage(event){
+        this.props.history.push('/products')  
+    }
+
     render() { 
+
         if(this.state.success===true)
         {
             return (
@@ -62,6 +84,7 @@ class AddProduct extends React.Component {
                 </div>
             )
         }
+
         return ( 
             <div>
                 <Header></Header>
@@ -129,14 +152,19 @@ class AddProduct extends React.Component {
 
          );
 
-   
     }
+
 }
-function actionDispatch(dispatch){
-    console.log("dispatch")
+
+function convertFunctionToPropsToBroadcast(dispatch){
     return bindActionCreators({
-        setProducts:addProductBroadCast
-    },dispatch)
+        addProducts: addProductBroadcast
+
+    }, dispatch)
 }
- 
-export default  connect(null,actionDispatch)(withRouter (AddProduct));
+
+export default withRouter (connect(null,convertFunctionToPropsToBroadcast) (AddProduct));
+
+
+
+

@@ -26,7 +26,7 @@
     },
     {
       "name": "Bag",
-      "price": "12345",
+      "price": "12346",
       "image": "http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
       "category": "Electronics",
       "quantity": "5",
@@ -41,14 +41,6 @@
       "id": 7
     },
     {
-      "name": "Nokia",
-      "price": "12345",
-      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
-      "category": "Electronics",
-      "quantity": "5",
-      "id": 8
-    },
-    {
       "name": "Test",
       "price": "1234",
       "image": "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
@@ -57,12 +49,52 @@
       "id": 9
     },
     {
-      "name": "iPhone 11",
+      "name": "Nokia",
       "price": "10000",
       "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
       "category": "Electronics",
       "quantity": "5",
       "id": 10
+    },
+    {
+      "name": "Nokia 7",
+      "price": "10000",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "category": "Electronics",
+      "quantity": "5",
+      "id": 11
+    },
+    {
+      "name": "Nokia",
+      "price": "10000",
+      "quantity": "5",
+      "category": "Electronics",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "id": 12
+    },
+    {
+      "name": "Nokia",
+      "price": "10000",
+      "quantity": "5",
+      "category": "Electronics",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "id": 13
+    },
+    {
+      "name": "Test",
+      "price": "100",
+      "quantity": "5",
+      "category": "Electronics",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "id": 14
+    },
+    {
+      "name": "Nokia 11",
+      "price": "77777",
+      "image": "https://www.idgcdn.com.au/products/image/12673/angle/8/415x415/345908/",
+      "category": "Electronics",
+      "quantity": "5",
+      "id": 15
     }
   ],
   "login": [

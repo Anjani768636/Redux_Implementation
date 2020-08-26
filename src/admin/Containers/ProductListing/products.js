@@ -1,22 +1,25 @@
 import React from 'react';
-import '../ProductListing/products.css'
+import './products.css'
 import axios from 'axios';
-import ProductDetail from '../ProductDetails/productdetails';
-import Header from '../Header/header'
+import Header from '../../Header/header'
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import listProductsBroadcasting from '../../Actions/listProductBroadcast'
+import searchProductBroadCast from '../../Actions/searchProductsBroadcast';
 
-class Product extends React.Component {
+class ProductList extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
             products: [],
-            productsList: [],
-            myid: 0,
             noData:false,
-            sortvalue:false
+            sortvalue:false,
+            searchValue:''
         }
     }
+   
 
     componentWillMount() {
         this.getAllProducts()
@@ -24,13 +27,16 @@ class Product extends React.Component {
 
     getAllProducts = () => {
         axios.get("http://localhost:3000/allProducts").then(response => {
-        this.setState({ products: response.data, productsList: response.data })
+        console.log(response.data)
+        this.props.sendAllProducts(response.data)
+        this.setState({products:this.props.allProducts})
         }, error => {
             console.log(error)
         })
     }
 
     deleteProductById = (id) => {
+        console.log(id)
         axios.delete("http://localhost:3000/allProducts/" + id).then(response => {
         this.getAllProducts()
         this.myFunction()
@@ -41,58 +47,61 @@ class Product extends React.Component {
 
     editProductById = (id) => {
         console.log(id)
-        this.setState({ myid: id })
         this.props.history.push({
             pathname: '/editproduct',
-            state: { myid: id }
+            state: id
         })
     }
     viewProductById = (id) => {
         console.log(id)
-        this.setState({ myid: id })
         this.props.history.push({
             pathname: '/productdesc',
-            state: { myid: id }
+            state: id 
         })
     }
 
     renderAllProducts = () => {
-        return this.state.products.map(product => {
-            return (
-                <ProductDetail
-                    key={product.id}
-                    id={product.id}
-                    image={product.image}
-                    name={product.name}
-                    price={product.price}
-                    quantity={product.quantity}
-                    category={product.category}
-
-                    deleteId={this.deleteProductById}
-                    editId={this.editProductById.bind(this)}
-                    viewId={this.viewProductById.bind(this)}
-                >
-                </ProductDetail>
-            )
-        })
+        return this.props.allProducts.map(product => {
+            console.log("rendering")
+               console.log(product)
+               console.log(this.props.allProducts)
+               console.log(product.name);
+                return (
+                    <div className="columnpl" style={{display:"inline"}} >
+                    <div className="cardpl" >  
+                        <img src={product.image} alt={product.name}style={{height:"200px",width:"200px"}}/> 
+                        <p>{product.name} Rs: {product.price}</p>
+                        <p>Qty: {product.quantity}</p>
+                        <button className="buttonpl" onClick={this.editProductById.bind(this,product.id)} >Update</button>
+                        <button className="buttonpl" onClick={()=>this.deleteProductById(product.id)}>Delete</button>
+                        <button className="buttonpl" onClick={()=>this.viewProductById(product.id)}>View Product</button> 
+                    </div> 
+                  </div>
+                )
+            })
     }
-    addProduct() {
-        this.props.history.push('/addproducts')
-    }
-
     searchHandle(event){
-        this.setState({searchtext:event.target.value},()=>{
-        console.log(this.state.searchtext)
-        const prod=this.state.productsList.filter(p=>{
-        return( p.name.toLowerCase().includes(this.state.searchtext.toLowerCase()) ||
-        p.category.toLowerCase().includes(this.state.searchtext.toLowerCase()) ||
-        p.quantity.toLowerCase().includes(this.state.searchtext.toLowerCase())
-        )})
-        if(!prod.length){
-        this.setState({noData:true})   
+        let searchV = event.target.value
+        if (searchV === '') {
+            this.getAllProducts()
         }
-        this.setState({products:prod})
+        this.setState({ searchValue: searchV })
+        console.log(searchV);
+        let searchF = this.state.products.filter(f => {
+            return (f.name.toLowerCase().match(searchV.toLowerCase().trim()) ||
+                f.category.toLowerCase().match(searchV.toLowerCase().trim()))
         })
+        console.log(searchF);
+        this.props.sendSearch(searchF)
+        this.setState({sortvalue:false})
+        if(!searchF.length){
+            console.log("nodata");
+            this.setState({noData:true})
+        }
+        else{
+            console.log("true data");
+            this.setState({noData:false})
+        }
     }
 
     myFunction() {
@@ -122,11 +131,9 @@ class Product extends React.Component {
  
     render() {
         if(this.state.noData){
-            this.setState({noData:false})
-            return(
-                
+            return( 
             <div>
-            <Header></Header>
+                <Header></Header>
                 <div>
                     <div>
                         <form>
@@ -139,16 +146,13 @@ class Product extends React.Component {
                     </div>
                     
                 </div>
-        </div>
-
-
+            </div>
             );
         }
 
-        return (
-         
+        return(
             <div>
-                <Header></Header>
+                    <Header></Header>
                     <div>
                         <div>
                             <form>
@@ -164,9 +168,26 @@ class Product extends React.Component {
                         </div>
                         {this.renderAllProducts()}
                     </div>
+
             </div>
         );
     }
 }
 
-export default withRouter (Product);
+function convertStoreToProps(store){
+    console.log("store created")
+    console.log(store.allProducts)
+    return{
+        allProducts:store.allProducts
+    }
+}
+
+function convertFunctionToPropsToBroadcast(dispatch){
+    return bindActionCreators({
+        sendAllProducts: listProductsBroadcasting,
+        sendSearch: searchProductBroadCast
+
+    }, dispatch)
+}
+
+export default withRouter( connect(convertStoreToProps,convertFunctionToPropsToBroadcast) (ProductList));

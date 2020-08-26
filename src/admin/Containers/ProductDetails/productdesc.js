@@ -1,7 +1,7 @@
 import React from 'react';
 import './productdetails.css';
 import Axios from 'axios';
-import Header from '../Header/header'
+import Header from '../../Header/header'
 import { withRouter } from 'react-router-dom';
 
 class ProductDesc extends React.Component {
@@ -9,21 +9,12 @@ class ProductDesc extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            // id: 0,
-            // image: '',
-            // name: '',
-            // price: 0,
-            // quantity: 0,
-            // category: '',
-            // status: '',
-            nameerror: '',
-           buttonStatus:false
+       
 
         }
 
     }
     
-
     componentWillMount() {
         if (this.props.location.state !== undefined) {
             console.log(this.props.location.state)
@@ -52,7 +43,7 @@ class ProductDesc extends React.Component {
                     <div>
                         <div className="containerpd">
                             <div className="left-columnpd">
-                                <img src={this.state.image} alt="Image not found"/>
+                                <img src={this.state.image} alt="not found"/>
                             </div>
                             <div className="right-columnpd">
                                 <div className="product-descriptionpd">

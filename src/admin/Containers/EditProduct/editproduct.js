@@ -1,12 +1,13 @@
 import React from 'react';
 import Axios from 'axios';
 import './editproduct.css';
-import Header from '../Header/header'
+import Header from '../../Header/header'
 import { withRouter } from 'react-router-dom';
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import editProductBroadcast from '../Actions/editProductBroadcast'
+import editProductBroadcast from '../../Actions/editProductBroadcast';
+
 
 class EditProduct extends React.Component {
 
@@ -26,27 +27,8 @@ class EditProduct extends React.Component {
 
 
     componentWillMount() {
-        // console.log(this.props)
-        // if (this.props.location.state !== undefined) {
-            
-        //     Axios.get("http://localhost:3000/allProducts/" + this.props.location.state.myid).then(response => {
-        //         console.log(response)
-        //         this.setState({
-        //             id: response.data.id,
-        //             image: response.data.image,
-        //             name: response.data.name,
-        //             price: response.data.price,
-        //             quantity: response.data.quantity,
-        //             category: response.data.category,
-
-        //         })
-        //     }, error => {
-        //         console.log(error)
-        //     })
-        // }
-
         let editProduct=this.props.products.find((p)=>{
-        return p.id == this.props.location.state});
+        return p.id === this.props.location.state});
         console.log(this.props.location.state)
                  this.setState({
                     id: editProduct.id,
@@ -103,15 +85,14 @@ class EditProduct extends React.Component {
                 
                 this.setState({success:true})
                 this.props.editProductB(response.data)
-                //this.props.history.push('/products')
             }, error => {
                 console.log(error)
             })
 
         }
-        mainpage(event){
-            this.props.history.push('/products')  
-        }
+    mainpage(event){
+        this.props.history.push('/products')  
+    }
 
     render() { 
         if(this.state.success===true)
@@ -205,4 +186,3 @@ class EditProduct extends React.Component {
     };
   }
   export default withRouter (connect(mapStatesToProps, matchDispatchToProps)(EditProduct));
-//export default withRouter (EditProduct);
